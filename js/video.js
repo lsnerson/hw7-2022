@@ -3,6 +3,7 @@ let play_button = document.querySelector("#play");
 let pause_button = document.querySelector("#pause");
 let slow_down = document.querySelector("#slower");
 let speed_up = document.querySelector("#faster");
+let skip_ahead = document.querySelector("#skip");
 let mute_button = document.querySelector("#mute");
 let volume_slider = document.querySelector("#slider");
 let volume = document.querySelector("#volume");
@@ -10,14 +11,16 @@ let styled = document.querySelector("#vintage");
 let original = document.querySelector("#orig");
 
 window.addEventListener("load", function() {
-	video.load();
 	console.log("Good job opening the window")
+	video.load();
+	video.autoplay = false;
+	video.loop = false;
+	console.log("autoplay: " + video.autoplay)
+	console.log("loop: " + video.loop)
 });
 
 play_button.addEventListener("click", function(){
 	video.play();
-	video.autoplay = false;
-	video.loop = false;
 	volume.innerHTML = video.volume * 100 + "%";
 	console.log("Play Video");
 })
@@ -33,8 +36,19 @@ slow_down.addEventListener("click", function(){
 })
 
 speed_up.addEventListener("click", function(){
-	video.playbackRate /= 0.9;
+	video.playbackRate *= 1.10;
 	console.log(video.playbackRate);
+})
+
+skip_ahead.addEventListener("click", function(){
+	if (video.currentTime + 10 >= 67.403333){
+		video.currentTime = 0
+		video.play()
+	}
+	else{
+		video.currentTime += 10
+	}
+	console.log(video.currentTime)
 })
 
 mute.addEventListener("click", function(){
