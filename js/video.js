@@ -56,13 +56,15 @@ volume_slider.addEventListener("change", function(){
 })
 
 styled.addEventListener("click", function(){
-	styled.style = "#oldSchool"
-	video.style = styled
-	console.log("It is styled.");
+	video.style = document.getElementsByClassName(".oldSchool");
+	// console.log("It is styled.");
+})
+
+styled.addEventListener("click", function(){
+	video.className += " oldSchool";
 })
 
 original.addEventListener("click", function(){
-	video.style = orig
-	console.log("It is not styled.");
+	video.className = "video";
 })
 
